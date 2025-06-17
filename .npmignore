@@ -1,0 +1,7 @@
+/src
+/docs
+/example
+/.vscode
+/node_modules
+
+package-lock.json
