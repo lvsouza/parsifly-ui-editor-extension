@@ -5,6 +5,7 @@ import { name } from './package.json';
 
 export default defineConfig({
   root: './',
+  publicDir: './src/assets',
   build: {
     sourcemap: false,
     emptyOutDir: true,
