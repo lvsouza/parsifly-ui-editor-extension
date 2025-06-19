@@ -5,10 +5,11 @@ import { name } from './package.json';
 
 export default defineConfig({
   root: './',
-  publicDir: './src/assets',
+  publicDir: './dist',
   build: {
     sourcemap: false,
     emptyOutDir: true,
+    outDir: './dist/extension',
     lib: {
       name,
       formats: ['es'],

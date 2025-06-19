@@ -1,7 +1,7 @@
 {
   "name": "parsifly-ui-editor-extension",
   "version": "1.0.0-alpha.1",
-  "module": "dist/index.js",
+  "module": "dist/extension/index.js",
   "manifest": "manifest.json",
   "private": false,
   "scripts": {

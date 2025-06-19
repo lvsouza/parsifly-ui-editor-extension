@@ -9,6 +9,7 @@
   "editors": [
     {
       "key": "ui-editor",
+      "selector": ["component", "page"],
       "publicPath": "/assets/ui-editor/index.html"
     }
   ]
