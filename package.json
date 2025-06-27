@@ -6,7 +6,7 @@
   "private": false,
   "scripts": {
     "dev": "vite build --watch --sourcemap & vite",
-    "build": "vite build"
+    "build": "vite build && cd ./assets/ui-editor && vite build"
   },
   "dependencies": {
     "@parsifly/extension-basics": "file:../parsifly-extension-base"
