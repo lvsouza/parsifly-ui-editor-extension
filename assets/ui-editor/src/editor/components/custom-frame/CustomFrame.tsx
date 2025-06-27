@@ -1,6 +1,5 @@
-import { createElement, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { type IObservable, selector, useObserverValue } from 'react-observing';
-import Frame from 'react-frame-component';
 
 import { type TStyle } from '../../types';
 
@@ -22,38 +21,32 @@ export const CustomFrame = ({ children, styles, draggingHover, resetBody }: ICus
   );
 
 
-  const iframeHead = useMemo(() => {
-    return (
-      <>
-        {allStyles.map(style => createElement('style', { key: style.id }, style.content))}
-        <style>
-          {[
-            `* { outline: none; }`,
-            resetBody ? 'body { margin:0!important; }' : '',
-            `html${draggingHover ? '' : ':hover'} body .frame-content * {`,
-            `  outline: thin solid #80808050;`,
-            `}`,
-            `[data-hover="true"] *, [data-select="true"] * {`,
-            `  outline: none!important;`,
-            `}`,
-          ].join('\n')}
-        </style>
-      </>
-    );
-  }, [allStyles, resetBody]);
+  const iframeStyles = useMemo(() => {
+    return [
+      ...allStyles.map(style => style.content),
+      `* { outline: none; }`,
+      resetBody ? 'body { margin:0!important; }' : '',
+      `html${draggingHover ? '' : ':hover'} body .frame-content * {`,
+      `  outline: thin solid #80808050;`,
+      `}`,
+      `[data-hover="true"] *, [data-select="true"] * {`,
+      `  outline: none!important;`,
+      `}`,
+    ].join('\n');
+  }, [allStyles, draggingHover, resetBody]);
 
 
-  return (
-    <Frame
-      tabIndex={-1}
-      head={iframeHead}
-      mountTarget="body"
-      sandbox='allow-scripts allow-same-origin'
-      onContextMenu={(e: any) => e.preventDefault()}
-      className="w-full h-full bg-white border-none outline-none"
-      initialContent={`<html tabindex="0"><head></head><body style="min-height: 500px"></body></html>`}
-    >
-      {children}
-    </Frame>
-  );
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = iframeStyles;
+
+    document.head.append(style);
+
+    return () => {
+      style.remove();
+    }
+  }, [iframeStyles]);
+
+
+  return children;
 };

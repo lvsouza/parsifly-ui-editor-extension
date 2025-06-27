@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useCallback, useMemo, useRef } from 'react';
-import { DragAndDropProvider, useDrop } from 'react-use-drag-and-drop';
+import { useCallback, useMemo } from 'react';
 import { observe, set } from 'react-observing';
 
 import { UIEditor, type TComponent, type TDropFunctionProps, type TElement, type TStyle, type TValueParseFunction } from './editor';
-import { Component } from './components/Component';
 import { uuid } from './editor/helpers';
-import { Text } from './components/Text';
-import { Html } from './components/Html';
 
 
 export function App() {
@@ -480,18 +476,6 @@ export function App() {
   }, []);
 
 
-  console.log(window);
-  const elementRef = useRef<HTMLDivElement>(null);
-  const droppableId = useRef({ id: uuid() });
-  useDrop({
-    element: elementRef,
-    id: droppableId.current.id,
-    hover(data, monitor) {
-      console.log(data);
-    },
-  }, []);
-
-
   const handleGetDropElement = useCallback((element: string | TElement): TElement<"html" | "component" | "slot" | "text"> => {
     if (typeof element === 'object') return element;
 
@@ -684,87 +668,27 @@ export function App() {
 
 
   return (
-    <div className='w-screen h-screen bg-paper flex justify-center items-center gap-4'>
-      <DragAndDropProvider>
-        <div className='p-2 flex flex-col gap-2'>
-          Draggable
+    <UIEditor
+      value={values.value}
+      styles={values.styles}
+      components={values.components}
+      onKeyDown={(...rest) => console.log('end', ...rest)}
 
+      hoveredId={hoveredId}
+      selectedId={selectedId}
+      onHover={id => set(hoveredId, id)}
+      onSelect={id => set(selectedId, id)}
 
-          <div className='h-[90vh] w-[10vw] border rounded'>
-            <section className='p-2 flex flex-col gap-2'>
-              <legend>Native</legend>
+      onDrop={handleDrop}
+      onAddSlotContent={handleAddSlot}
+      onDragEnd={(...rest) => console.log('end', ...rest)}
+      onDragStart={(...rest) => console.log('start', ...rest)}
 
-              <Text />
+      onRemove={handleRemove}
+      onDuplicate={(...rest) => console.log('duplicate', ...rest)}
 
-              <Html tag='p' />
-              <Html tag='div' />
-              <Html tag='button' />
-            </section>
-
-            <section className='p-2 flex flex-col gap-2'>
-              <legend>Components</legend>
-
-              <Component id='simple-component' name="c - simple-component" />
-              <Component id='component-with-slot' name="c-s - component-with-slot" />
-              <Component id='component-with-component-with-slot' name="c-c-s - component-with-component-with-slot" />
-              <Component id='component-with-component-with-slot-with-child' name="c-c-s-e - component-with-component-with-slot-with-child" />
-
-              <Component id='component-with-it-self' name="Loop 1  - c-c-... - component-with-it-self" />
-              <Component id='component-with-component-inside-with-this-inside' name="Loop 2 - c-e-c-e-... - component-with-component-inside-with-this-inside" />
-            </section>
-          </div>
-        </div>
-
-        <div className='p-2 flex flex-col gap-2'>
-          UI editor
-
-          <div className='w-[60vw] h-[90vh] bg-background rounded overflow-clip'>
-            <UIEditor
-              value={values.value}
-              styles={values.styles}
-              components={values.components}
-              onKeyDown={(...rest) => console.log('end', ...rest)}
-
-              hoveredId={hoveredId}
-              selectedId={selectedId}
-              onHover={id => set(hoveredId, id)}
-              onSelect={id => set(selectedId, id)}
-
-              onDrop={handleDrop}
-              onAddSlotContent={handleAddSlot}
-              onDragEnd={(...rest) => console.log('end', ...rest)}
-              onDragStart={(...rest) => console.log('start', ...rest)}
-
-              onRemove={handleRemove}
-              onDuplicate={(...rest) => console.log('duplicate', ...rest)}
-
-              onExpressionToValue={handleExpressionToValue}
-              onValueToExpression={handleValueToExpression}
-            />
-          </div>
-        </div>
-
-        <div className='p-2 flex flex-col gap-2' ref={elementRef}>
-          Overview
-
-          {/* <div className='h-[90vh] w-[20vw] border rounded p-1'>
-            <UiOverview
-              value={values.value}
-              components={values.components}
-              onKeyDown={(...rest) => console.log('overview:end', ...rest)}
-
-              hoveredId={hoveredId}
-              selectedId={selectedId}
-              onHover={id => set(hoveredId, id)}
-              onSelect={id => set(selectedId, id)}
-
-              onDrop={handleDrop}
-              onDragEnd={(...rest) => console.log('end', ...rest)}
-              onDragStart={(...rest) => console.log('start', ...rest)}
-            />
-          </div> */}
-        </div>
-      </DragAndDropProvider>
-    </div>
+      onExpressionToValue={handleExpressionToValue}
+      onValueToExpression={handleValueToExpression}
+    />
   );
 }
