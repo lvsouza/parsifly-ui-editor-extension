@@ -9,8 +9,24 @@
   "editors": [
     {
       "key": "ui-editor",
-      "selector": ["component", "page"],
-      "publicPath": "/assets/ui-editor/index.html"
+      "title": "UI Editor",
+      "entryPoint": {
+        "basePath": "dist/assets/ui-editor",
+        "file": "index.html"
+      },
+      "description": "This editor allow you to edit the components or pages ui content",
+      "actions": [
+        {
+          "icon": "VscAdd",
+          "key": "add-ui-element",
+          "label": "Add new UI element",
+          "description": "Allow you to add many types of ui elements to the content"
+        }
+      ],
+      "selector": [
+        "component",
+        "page"
+      ]
     }
   ]
 }

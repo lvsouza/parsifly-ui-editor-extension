@@ -6,11 +6,11 @@ import { name } from './package.json';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '',
   root: './',
-  base: `/${name}/`,
   plugins: [react()],
   build: {
-    outDir: `../../dist/${name}`, // pasta fora do diretório atual
+    outDir: `../../dist/assets/${name}`, // pasta fora do diretório atual
     emptyOutDir: true, // limpa o destino antes do build
   },
 })

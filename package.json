@@ -5,6 +5,7 @@
   "manifest": "manifest.json",
   "private": false,
   "scripts": {
+    "postinstall": "cd ./assets/ui-editor && yarn",
     "dev": "vite build --watch --sourcemap & vite",
     "build": "vite build && cd ./assets/ui-editor && vite build"
   },
