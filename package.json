@@ -1,5 +1,5 @@
 {
-  "name": "parsifly-ui-editor-extension",
+  "name": "parsifly-extension-ui-editor",
   "version": "1.0.0-alpha.2",
   "module": "dist/extension/index.js",
   "manifest": "manifest.json",

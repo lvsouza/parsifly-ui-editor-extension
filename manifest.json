@@ -1,7 +1,7 @@
 {
   "name": "UI Editor",
   "authorName": "Lucas Souza Dev",
-  "packageName": "parsifly-ui-editor-extension",
+  "packageName": "parsifly-extension-ui-editor",
   "description": "This extension provide a rich ui editor for web edit",
   "views": [],
   "parsers": [],

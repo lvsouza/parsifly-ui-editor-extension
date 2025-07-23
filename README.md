@@ -1,4 +1,4 @@
-# parsifly-ui-editor-extension
+# parsifly-extension-ui-editor
 
 ## Overview 
 
