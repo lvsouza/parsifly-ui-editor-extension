@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useFrame } from 'react-frame-component';
 
 
 interface IContentFrameProps {
@@ -10,14 +9,13 @@ interface IContentFrameProps {
   onKeyDown: (event: KeyboardEvent) => void;
 }
 export const ContentFrame: React.FC<IContentFrameProps> = ({ children, onScroll, onRef, onKeyDown, onClick }) => {
-  const { document } = useFrame();
 
 
   useEffect(() => {
     if (!document) return;
 
     onRef(document);
-  }, [onRef, document]);
+  }, [onRef]);
 
   useEffect(() => {
     if (!document) return;
@@ -25,7 +23,7 @@ export const ContentFrame: React.FC<IContentFrameProps> = ({ children, onScroll,
     document.onclick = onClick;
     document.onkeydown = onKeyDown;
     document.onscroll = (e: any) => onScroll(e.target.documentElement.scrollTop, e.target.documentElement.scrollLeft);
-  }, [document, onScroll, onKeyDown, onClick]);
+  }, [onScroll, onKeyDown, onClick]);
 
 
   return children;

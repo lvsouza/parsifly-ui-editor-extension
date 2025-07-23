@@ -108,7 +108,7 @@ export const UIEditorContent = () => {
   return (
     <CustomFrame
       styles={styles}
-      resetBody={true}
+      resetBody={false}
       draggingHover={isDraggingOver || isDraggingOverCurrent}
     >
       <ContentFrame

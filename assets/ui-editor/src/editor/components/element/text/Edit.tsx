@@ -1,7 +1,6 @@
 import { type MouseEvent, type RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type TMonitor, useDrag, useDrop } from 'react-use-drag-and-drop';
 import { useObserver, useObserverValue } from 'react-observing';
-import { useFrame } from 'react-frame-component';
 
 import { type TDraggableElement, type TElement, type TParentElement } from '../../../types';
 import { useUiEditorContext } from '../../../UiEditorContext';
@@ -29,7 +28,6 @@ interface IEditProps {
 }
 export const Edit = ({ element, parents, onMouseOver, onMouseLeave, onSelect, onDragLeave, onDragOver, onDrop, onHoverBar, onSelectBar }: IEditProps) => {
   const elementRef = useRef<HTMLElement>(null);
-  const { window, document } = useFrame();
 
   const [text, setText] = useObserver(element.text);
   const name = useObserverValue(element.name);
@@ -100,7 +98,7 @@ export const Edit = ({ element, parents, onMouseOver, onMouseLeave, onSelect, on
     range.selectNodeContents(span);
     selection.removeAllRanges();
     selection.addRange(range);
-  }, [window, document]);
+  }, []);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLSpanElement>) => {
     e.stopPropagation();

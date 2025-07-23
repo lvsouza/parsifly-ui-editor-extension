@@ -8,10 +8,16 @@ new class ProjectExport extends ExtensionBase {
       new Action({
         key: 'add-ui-element',
         action: async () => {
-          console.log('UI Editor action');
+          await this.editor.webView.sendMessage('From extension host');
         }
       }),
     ],
+    onDidReceiveMessage: async (value) => {
+      console.log('Extension Host:', value);
+    },
+    resolve: async (id) => {
+      await this.editor.webView.sendMessage('From extension host', id);
+    },
   });
 
 
