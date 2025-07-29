@@ -17,8 +17,8 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-observing": "^2.6.16",
-    "react-use-drag-and-drop": "^1.1.0",
-    "@parsifly/extension-basics": "github:lvsouza/parsifly-extension-base#main"
+    "react-use-drag-and-drop": "^1.2.1",
+    "parsifly-extension-base": "^1.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

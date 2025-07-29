@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { type TMonitor, useDrop } from 'react-use-drag-and-drop';
+import { type TDropMonitor, useDrop } from 'react-use-drag-and-drop';
 import { useObserverValue } from 'react-observing';
 
 import { SelectBarWrapper, useSelectBar } from './components/select-bar';
@@ -27,7 +27,7 @@ export const UIEditorContent = () => {
 
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleDrop = useCallback((data: TDraggableElement | TExternalDraggableElement | undefined, _: TMonitor) => {
+  const handleDrop = useCallback((data: TDraggableElement | TExternalDraggableElement | undefined, _: TDropMonitor) => {
     hideInsertBar();
     if (!data) return;
 
@@ -69,7 +69,7 @@ export const UIEditorContent = () => {
   }, [value, select, hideInsertBar]);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleDragHover = useCallback((_: TDraggableElement | undefined, __: TMonitor) => {
+  const handleDragHover = useCallback((_: TDraggableElement | undefined, __: TDropMonitor) => {
     const lastElementChild = frameDocumentRef?.lastElementChild;
     if (!lastElementChild) return;
 

@@ -1,6 +1,6 @@
 import { type MouseEvent, type RefObject, useEffect, useMemo, useRef } from 'react';
 import { useObserverValue, useSelectorValue } from 'react-observing';
-import { type TMonitor, useDrag, useDrop } from 'react-use-drag-and-drop';
+import { type TDropMonitor, useDrag, useDrop } from 'react-use-drag-and-drop';
 
 import { type TDraggableElement, type TElement, type TParentElement } from '../../../types';
 import { useUiEditorContext } from '../../../UiEditorContext';
@@ -16,9 +16,9 @@ interface IEditProps {
   element: TElement<'component'>;
   parents: TParentElement[];
 
-  onDrop: (data: TDraggableElement, monitor: TMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
-  onDragOver: (data: TDraggableElement, monitor: TMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
-  onDragLeave: (data: TDraggableElement, monitor: TMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDrop: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDragOver: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDragLeave: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
 
   onMouseLeave: (event: MouseEvent) => void;
   onSelect: (event: MouseEvent, element: TElement<'component'>) => void;

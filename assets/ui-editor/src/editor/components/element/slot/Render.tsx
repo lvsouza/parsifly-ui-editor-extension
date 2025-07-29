@@ -1,5 +1,5 @@
 import { type MouseEvent, type RefObject, useRef } from 'react';
-import { type TMonitor, useDrop } from 'react-use-drag-and-drop';
+import { type TDropMonitor, useDrop } from 'react-use-drag-and-drop';
 
 import { type TDraggableElement, type TElement, type TParentElement } from '../../../types';
 import { useMatchEffect } from '../UseMatchEffect';
@@ -13,9 +13,9 @@ interface IRenderProps {
   element: TElement<'slot'>;
   parents: TParentElement[];
 
-  onDrop: (data: TDraggableElement, monitor: TMonitor, element: TElement<'slot-content'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
-  onDragOver: (data: TDraggableElement, monitor: TMonitor, element: TElement<'slot-content'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
-  onDragLeave: (data: TDraggableElement, monitor: TMonitor, element: TElement<'slot-content'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDrop: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'slot-content'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDragOver: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'slot-content'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDragLeave: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'slot-content'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
 
   onMouseLeave: (event: MouseEvent) => void;
   onMouseOver: (event: MouseEvent, element: TElement<'slot-content'>, htmlElement: HTMLElement | null) => void;

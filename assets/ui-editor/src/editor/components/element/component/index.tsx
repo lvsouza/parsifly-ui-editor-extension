@@ -1,5 +1,5 @@
 import { type MouseEvent, type RefObject } from 'react';
-import { type TMonitor } from 'react-use-drag-and-drop';
+import { type TDropMonitor } from 'react-use-drag-and-drop';
 
 import { type TDraggableElement, type TElement, type TParentElement } from '../../../types';
 import { useHasInfinityLoop } from './UseHasInfinityLoop';
@@ -14,9 +14,9 @@ interface IComponentProps {
   element: TElement<'component'>;
   parents: TParentElement[];
 
-  onDrop: (data: TDraggableElement, monitor: TMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
-  onDragOver: (data: TDraggableElement, monitor: TMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
-  onDragLeave: (data: TDraggableElement, monitor: TMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDrop: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDragOver: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
+  onDragLeave: (data: TDraggableElement, monitor: TDropMonitor, element: TElement<'component'>, parents: TParentElement[], elementRef: RefObject<HTMLElement>, droppableId: string) => void;
 
   onMouseLeave: (event: MouseEvent) => void;
   onSelect: (event: MouseEvent, element: TElement<'component'>) => void;

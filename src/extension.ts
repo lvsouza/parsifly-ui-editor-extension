@@ -1,4 +1,4 @@
-import { Action, Editor, ExtensionBase } from '@parsifly/extension-basics';
+import { Action, Editor, ExtensionBase } from 'parsifly-extension-base';
 
 
 new class ProjectExport extends ExtensionBase {

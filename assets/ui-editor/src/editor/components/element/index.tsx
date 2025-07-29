@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useObserverValue } from 'react-observing';
-import { type TMonitor } from 'react-use-drag-and-drop';
+import { type TDropMonitor } from 'react-use-drag-and-drop';
 
 import { type TDraggableElement, type TElement, type TExternalDraggableElement, type TParentElement } from '../../types';
 import { getCanDrop, getDropPosition, getInsertBarPosition } from '../../helpers';
@@ -74,7 +74,7 @@ export const Element = ({ element, parents }: IElementProps) => {
   }, [updateSelectBar, parents]);
 
 
-  const handleDragOver = useCallback((_: TDraggableElement, monitor: TMonitor, element: TElement<"html" | "slot" | "component" | "text" | "slot-content">, parents: TParentElement[], elementRef: React.RefObject<HTMLElement>, droppableId: string) => {
+  const handleDragOver = useCallback((_: TDraggableElement, monitor: TDropMonitor, element: TElement<"html" | "slot" | "component" | "text" | "slot-content">, parents: TParentElement[], elementRef: React.RefObject<HTMLElement>, droppableId: string) => {
     const canDrop = getCanDrop(monitor, element, parents, elementRef, droppableId);
     if (!canDrop) return hover(undefined);
 
@@ -93,7 +93,7 @@ export const Element = ({ element, parents }: IElementProps) => {
     });
   }, [showInsertBar, hover, hideInsertBar]);
 
-  const handleDrop = useCallback((data: TDraggableElement | TExternalDraggableElement, monitor: TMonitor, elementDropTarget: TElement<"html" | "slot" | "component" | "text" | "slot-content">, elementDropTargetParents: TParentElement[], elementRef: React.RefObject<HTMLElement>, droppableId: string) => {
+  const handleDrop = useCallback((data: TDraggableElement | TExternalDraggableElement, monitor: TDropMonitor, elementDropTarget: TElement<"html" | "slot" | "component" | "text" | "slot-content">, elementDropTargetParents: TParentElement[], elementRef: React.RefObject<HTMLElement>, droppableId: string) => {
     const canDrop = getCanDrop(monitor, elementDropTarget, elementDropTargetParents, elementRef, droppableId);
     if (!canDrop) return;
 

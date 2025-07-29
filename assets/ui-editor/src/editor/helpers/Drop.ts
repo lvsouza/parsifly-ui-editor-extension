@@ -1,9 +1,9 @@
-import { type TMonitor } from 'react-use-drag-and-drop';
+import { type TDropMonitor } from 'react-use-drag-and-drop';
 
 import { type TElement, type TParentElement } from '../types';
 
 
-export const getCanDrop = (monitor: TMonitor, element: TElement<"html" | "slot" | "component" | "text" | "slot-content">, parents: TParentElement[], elementRef: React.RefObject<HTMLElement>, droppableId: string) => {
+export const getCanDrop = (monitor: TDropMonitor, element: TElement<"html" | "slot" | "component" | "text" | "slot-content">, parents: TParentElement[], elementRef: React.RefObject<HTMLElement>, droppableId: string) => {
   if (!elementRef.current) return false;
 
   /* Verify if the current drop action belongs to other droppable area  */
@@ -18,7 +18,7 @@ export const getCanDrop = (monitor: TMonitor, element: TElement<"html" | "slot" 
   return true;
 };
 
-export const getDropPosition = (monitor: TMonitor, element: TElement<'component' | 'html' | 'slot' | "text" | 'slot-content'>, elementRef: React.RefObject<HTMLElement>) => {
+export const getDropPosition = (monitor: TDropMonitor, element: TElement<'component' | 'html' | 'slot' | "text" | 'slot-content'>, elementRef: React.RefObject<HTMLElement>) => {
   if (!elementRef.current) return null;
 
   if (element.type.value === 'slot-content' && Array.isArray((element as TElement<'slot-content'>).children.value)) {
@@ -62,7 +62,7 @@ export const getDropPosition = (monitor: TMonitor, element: TElement<'component'
   return { isOverCurrentStart, isOverCurrentEnd, isOverEnd, isOverStart };
 };
 
-export const getInsertBarPosition = (monitor: TMonitor, element: TElement<'component' | 'html' | 'slot' | "text" | 'slot-content'>, elementRef: React.RefObject<HTMLElement>) => {
+export const getInsertBarPosition = (monitor: TDropMonitor, element: TElement<'component' | 'html' | 'slot' | "text" | 'slot-content'>, elementRef: React.RefObject<HTMLElement>) => {
   if (!elementRef.current) return null;
 
   const targetDomRect = elementRef.current.getBoundingClientRect();

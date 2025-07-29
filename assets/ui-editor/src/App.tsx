@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { acquireStudioApi } from '@parsifly/extension-basics/web-view';
+import { acquireStudioApi } from 'parsifly-extension-base/web-view';
 import { observe, set } from 'react-observing';
 
 import { UIEditor, type TComponent, type TDropFunctionProps, type TElement, type TStyle, type TValueParseFunction } from './editor';
