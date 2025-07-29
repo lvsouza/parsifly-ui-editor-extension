@@ -477,10 +477,29 @@ export function App() {
 
 
   useEffect(() => {
-    const unsubscribe = studioApi.subscribeToMessage((value, id) => {
+    const unsubscribe = studioApi.subscribeToMessage(async (value, id) => {
       console.log('Extension view:', value, id);
 
       setContent(initialContent);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = studioApi.subscribeToDragEvent(async (type, data, monitor) => {
+
+      // TODO: Update to force work with react-use-drag-and-drop lib
+      const target = window.document.elementFromPoint(monitor.x, monitor.y)
+      if (target) {
+        const dragOverEvent = new DragEvent('dragover', {
+          bubbles: true,
+          cancelable: true,
+          dataTransfer: new DataTransfer(), // necessário para simular um drag real
+        });
+
+        target.dispatchEvent(dragOverEvent);
+      }
     });
 
     return () => unsubscribe();
