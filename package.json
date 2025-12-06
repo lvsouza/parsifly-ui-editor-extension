@@ -1,8 +1,11 @@
 {
   "name": "parsifly-extension-ui-editor",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
+  "displayName": "UI Editor",
+  "authorName": "Lucas Souza Dev",
   "module": "dist/extension/index.js",
-  "manifest": "manifest.json",
+  "packageName": "parsifly-extension-ui-editor",
+  "description": "This extension provide a rich ui editor for web edit",
   "private": false,
   "scripts": {
     "postinstall": "cd ./assets/ui-editor && yarn",
@@ -10,7 +13,7 @@
     "build": "vite build && cd ./assets/ui-editor && vite build"
   },
   "dependencies": {
-    "parsifly-extension-base": "^1.2.14"
+    "parsifly-extension-base": "^1.2.15"
   },
   "devDependencies": {
     "typescript": "^5.6.2",
