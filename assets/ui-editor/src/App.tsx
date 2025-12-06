@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { acquireStudioApi } from 'parsifly-extension-base/web-view';
 import { observe, set } from 'react-observing';
 
 import { UIEditor, type TComponent, type TDropFunctionProps, type TElement, type TStyle, type TValueParseFunction } from './editor';
 import { uuid } from './editor/helpers';
 
-
-const studioApi = acquireStudioApi();
 
 const initialContent = {
   styles: observe<TStyle[]>([
@@ -473,11 +471,13 @@ const initialContent = {
 };
 
 export function App() {
+  const studioApi = useRef(acquireStudioApi());
+
   const [content, setContent] = useState<typeof initialContent>();
 
 
   useEffect(() => {
-    const unsubscribe = studioApi.subscribeToMessage(async (value, id) => {
+    const unsubscribe = studioApi.current.subscribeToMessage(async (value, id) => {
       console.log('Extension view:', value, id);
 
       setContent(initialContent);
@@ -487,7 +487,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = studioApi.subscribeToDragEvent(async (type, data, monitor) => {
+    const unsubscribe = studioApi.current.subscribeToDragEvent(async (_type, _data, monitor) => {
 
       // TODO: Update to force work with react-use-drag-and-drop lib
       const target = window.document.elementFromPoint(monitor.x, monitor.y)
