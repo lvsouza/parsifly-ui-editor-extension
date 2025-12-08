@@ -5,8 +5,8 @@ new class ProjectExport extends ExtensionBase {
   editor = new Editor({
     key: 'ui-editor',
     initialValue: {
-      icon: 'VscInspect',
       title: "UI Editor",
+      icon: { name: 'VscInspect' },
       selector: ['page', 'component'],
       description: "This editor allow you to edit the components or pages ui content",
       entryPoint: {
@@ -18,8 +18,8 @@ new class ProjectExport extends ExtensionBase {
           new PlatformAction({
             key: 'reload',
             initialValue: {
-              icon: "VscRefresh",
               label: "Reload editor",
+              icon: { name: "VscRefresh" },
               description: "Reload editor",
               action: async () => {
                 await context.reload();
@@ -30,15 +30,15 @@ new class ProjectExport extends ExtensionBase {
             key: 'close-editor',
             initialValue: {
               children: true,
-              icon: "VscEllipsis",
               label: "More options",
+              icon: { name: "VscEllipsis" },
               getActions: async () => {
                 return [
                   new PlatformAction({
                     key: 'more-send-message',
                     initialValue: {
-                      icon: "VscSend",
                       label: "Send message",
+                      icon: { name: "VscSend" },
                       action: async () => {
                         const editionId = await this.application.edition.get();
                         const result = await context.sendMessage('From extension host', editionId);
@@ -49,8 +49,8 @@ new class ProjectExport extends ExtensionBase {
                   new PlatformAction({
                     key: 'more-close-editor',
                     initialValue: {
-                      icon: "VscClose",
                       label: "Close editor",
+                      icon: { name: "VscClose" },
                       action: async () => {
                         const editionId = await this.application.edition.get();
                         await this.application.edition.close(editionId);

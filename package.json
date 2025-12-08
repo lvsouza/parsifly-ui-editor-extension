@@ -1,6 +1,6 @@
 {
   "name": "parsifly-extension-ui-editor",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "displayName": "UI Editor",
   "authorName": "Lucas Souza Dev",
   "module": "dist/extension/index.js",
@@ -13,7 +13,7 @@
     "build": "vite build && cd ./assets/ui-editor && vite build"
   },
   "dependencies": {
-    "parsifly-extension-base": "^1.2.15"
+    "parsifly-extension-base": "^1.2.17"
   },
   "devDependencies": {
     "typescript": "^5.6.2",
