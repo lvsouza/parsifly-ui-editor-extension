@@ -10,7 +10,7 @@ new class ProjectExport extends ExtensionBase {
       selector: ['page', 'component'],
       description: "This editor allow you to edit the components or pages ui content",
       entryPoint: {
-        basePath: "dist/assets/ui-editor",
+        basePath: "assets/ui-editor",
         file: "index.html",
       },
       getActions: async (context) => {
